@@ -9,18 +9,24 @@
                 Filtra por: 
             </div>
             <div class="col-md-4">
-                <input type="text" class="form-control">
+                <input type="text"
+                [(ngModel)] = "listFilter"
+                class="form-control">
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
-                <h3>Filtro: </h3>
+                <h3>Filtro: {{listFilter}}</h3>
             </div>
         </div>
         <div class="table-responsive">
             <table class="table"*ngIf="productos.length">
-                <thead>
+                <thead><th>
+                    <button type="button" class="btn btn-primary"
+                    (click)="muestImg()">{{muestraImg?'Oculta ':'Muestra '}}imagen</button>
+                </th>
                     <tr>
+                        
                         <th>Imagen</th>
                         <th>Modelo</th>
                         <th>Descripción</th>
@@ -31,20 +37,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let producto of productos">
+                    <tr *ngFor="let producto of productos | productoFilter:listFilter">
+                       
                         <td>
-                            <img
+                            <img [src]="producto.imagenUrl"
+                            *ngIf="muestraImg"
+                            [title]="producto.Modelo"
+                            [style.width.px]="imageWidth"
+                            [style.margin.px]="imageMargin">
+                            <!-- <img
                             width="100px"
                             height="50px"
-                             :src="{{producto.imagenUrl}}" alt="">
+                             :src="{{producto.imagenUrl}}" alt=""> -->
                            </td>
                         <td>{{producto.Modelo}}</td>
                         <td>{{producto.Descripcion}}</td>
-                        <td>{{producto.Year}}</td>
-                        <td>{{producto.Precio}}</td>
-                        <td>{{producto.Marca}}</td>
+                        <td>{{producto.Year | date}}</td>
+                        <td>{{producto.Precio | currency}}</td>
+                        <td>{{producto.Marca | uppercase}}</td>
                         <td>{{producto.Color}}</td>
-                        <td></td>
                     </tr>
                 </tbody>
             </table>
