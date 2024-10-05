@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ResistenciaComponent } from './resistencia.component';
+import { CinepolisComponent } from './cinepolis.component';
 
-describe('ResistenciaComponent', () => {
-  let component: ResistenciaComponent;
-  let fixture: ComponentFixture<ResistenciaComponent>;
+describe('CinepolisComponent', () => {
+  let component: CinepolisComponent;
+  let fixture: ComponentFixture<CinepolisComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ResistenciaComponent]
+      declarations: [CinepolisComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ResistenciaComponent);
+    fixture = TestBed.createComponent(CinepolisComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

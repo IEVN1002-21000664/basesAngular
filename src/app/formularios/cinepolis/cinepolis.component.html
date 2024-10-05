@@ -1,0 +1,74 @@
+<div class="container mt-5">
+    <h1 class="text-center">Cinepolis</h1>
+    <h3 class="text-center">Compra de Boletos</h3>
+    
+    <form (ngSubmit)="calcularTotal()" [formGroup]="formulario" class="mb-4">
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre:</label>
+        <input type="text" id="nombre" formControlName="nombre" class="form-control" required>
+        <div *ngIf="formulario.get('nombre')?.invalid && formulario.get('nombre')?.touched" class="text-danger">
+          El nombre es obligatorio.
+        </div>
+      </div>
+    
+      <div class="mb-3">
+        <label for="personas" class="form-label">Cantidad de personas:</label>
+        <input type="number" id="personas" formControlName="nPersonas" class="form-control" min="1" required>
+        <div *ngIf="formulario.get('nPersonas')?.invalid && formulario.get('nPersonas')?.touched" class="text-danger">
+          Debe ser al menos 1 persona.
+        </div>
+      </div>
+    
+      <div class="mb-3">
+        <label for="boletos" class="form-label">Cantidad de boletos:</label>
+        <input type="number" id="boletos" formControlName="nBoletos" class="form-control" min="1" max="7" required>
+        <div *ngIf="formulario.get('nBoletos')?.invalid && formulario.get('nBoletos')?.touched" class="text-danger">
+          Son maximo 7 boletos por persona
+        </div>
+      </div>
+    
+      <div class="mb-3">
+        <label class="form-label">¿Usa tarjeta CINECO?</label><br>
+        <input type="radio" id="cinecoSi" formControlName="tarjeta" [value]="true"> Sí
+        <input type="radio" id="cinecoNo" formControlName="tarjeta" [value]="false"> No
+      </div>
+    
+      <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid">Comprar</button>
+    </form>
+    
+    <div *ngIf="totalPagar > 0" class="mb-4">
+      <h3>Total a pagar: {{ totalPagar | currency }}</h3>
+      <h4>Resumen de la Orden:</h4>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Campo</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Nombre</td>
+            <td>{{ formulario.get('nombre')?.value }}</td>
+          </tr>
+          <tr>
+            <td>Cantidad de personas</td>
+            <td>{{ formulario.get('nPersonas')?.value }}</td>
+          </tr>
+          <tr>
+            <td>Cantidad de boletos</td>
+            <td>{{ formulario.get('nBoletos')?.value }}</td>
+          </tr>
+          <tr>
+            <td>Usa tarjeta CINECO</td>
+            <td>{{ formulario.get('tarjeta')?.value ? 'Sí' : 'No' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div *ngIf="mensaje" class="alert alert-warning">
+      <p>{{ mensaje }}</p>
+    </div>
+  </div>
+  
