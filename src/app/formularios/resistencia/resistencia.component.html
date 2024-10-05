@@ -1,0 +1,76 @@
+<div class="container mt-5">
+    <h2>Registro de Resistencias</h2>
+    <form [formGroup]="resistenciaForm" (ngSubmit)="registrarResistencia()">
+        <div class="mb-3">
+            <label for="color1" class="form-label">Primera Banda</label>
+            <select id="color1" formControlName="color1" class="form-select">
+                <option value="">Seleccione un color</option> 
+                <option *ngFor="let color of colores" [value]="color">{{ color }}</option>
+            </select>
+            <div *ngIf="resistenciaForm.get('color1')?.invalid && (resistenciaForm.get('color1')?.touched || resistenciaForm.get('color1')?.dirty)">
+                <small class="text-danger">Este campo es obligatorio.</small>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="color2" class="form-label">Segunda Banda</label>
+            <select id="color2" formControlName="color2" class="form-select">
+                <option value="">Seleccione un color</option>
+                <option *ngFor="let color of colores" [value]="color">{{ color }}</option>
+            </select>
+            <div *ngIf="resistenciaForm.get('color2')?.invalid && (resistenciaForm.get('color2')?.touched || resistenciaForm.get('color2')?.dirty)">
+                <small class="text-danger">Este campo es obligatorio.</small>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="color3" class="form-label">Tercera Banda</label>
+            <select id="color3" formControlName="color3" class="form-select">
+                <option value="">Seleccione un color</option>
+                <option *ngFor="let color of colores" [value]="color">{{ color }}</option>
+            </select>
+            <div *ngIf="resistenciaForm.get('color3')?.invalid && (resistenciaForm.get('color3')?.touched || resistenciaForm.get('color3')?.dirty)">
+                <small class="text-danger">Este campo es obligatorio.</small>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label>Tolerancia</label><br>
+            <div *ngFor="let tolerancia of tolerancias" class="form-check">
+                <input type="radio" class="form-check-input" [value]="tolerancia" formControlName="tolerancia" />
+                <label class="form-check-label">{{ tolerancia }}</label>
+            </div>
+            <div *ngIf="resistenciaForm.get('tolerancia')?.invalid && (resistenciaForm.get('tolerancia')?.touched || resistenciaForm.get('tolerancia')?.dirty)">
+                <small class="text-danger">Este campo es obligatorio.</small>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="resistenciaForm.invalid">Registrar</button>
+    </form>
+
+    <h3 class="mt-5">Resistencias Registradas</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Primera Banda</th>
+                <th>Segunda Banda</th>
+                <th>Tercera Banda</th>
+                <th>Tolerancia</th>
+                <th>Valor (Ω)</th>
+                <th>Valor Máximo (Ω)</th>
+                <th>Valor Mínimo (Ω)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let resistencia of resistencias">
+                <td [ngClass]="getColorClass(resistencia.color1)">{{ resistencia.color1 }}</td>
+                <td [ngClass]="getColorClass(resistencia.color2)">{{ resistencia.color2 }}</td>
+                <td [ngClass]="getColorClass(resistencia.color3)">{{ resistencia.color3 }}</td>
+                <td>{{ resistencia.tolerancia }}</td>
+                <td>{{ resistencia.valor }}</td>
+                <td>{{ resistencia.valorMaximo }}</td>
+                <td>{{ resistencia.valorMinimo }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

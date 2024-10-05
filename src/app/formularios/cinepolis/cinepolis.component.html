@@ -23,7 +23,7 @@
         <label for="boletos" class="form-label">Cantidad de boletos:</label>
         <input type="number" id="boletos" formControlName="nBoletos" class="form-control" min="1" max="7" required>
         <div *ngIf="formulario.get('nBoletos')?.invalid && formulario.get('nBoletos')?.touched" class="text-danger">
-          Son maximo 7 boletos por persona
+          Verifica los boletos por persona (7 x cada 1)
         </div>
       </div>
     

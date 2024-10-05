@@ -7,7 +7,7 @@ import { ProductListComponent } from './product/product-list/product-list.compon
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductoFilterPipe } from './product/producto-filter.pipe';
 import { Ejemplo1Component } from './formularios/ejemplo1/ejemplo1.component';
-// import { ResistenciaComponent } from './formularios/resistencia/resistencia.component';
+import { ResistenciaComponent } from './formularios/resistencia/resistencia.component';
 import { CinepolisComponent } from './formularios/cinepolis/cinepolis.component';
 
 @NgModule({
